@@ -1,0 +1,22 @@
+// src/store/app.store.ts
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
+
+interface AuthStore {
+  isAuthenticated: boolean;
+  login: () => void;
+  logout: () => void;
+}
+
+export const useStore = create<AuthStore>()(
+  persist(
+    (set) => ({
+      isAuthenticated: false,
+      login: () => set({ isAuthenticated: true }),
+      logout: () => set({ isAuthenticated: false }),
+    }),
+    {
+      name: "auth-storage", // key for localStorage
+    }
+  )
+);
