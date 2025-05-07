@@ -1,4 +1,3 @@
-// src/store/app.store.ts
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
@@ -16,7 +15,7 @@ export const useStore = create<AuthStore>()(
       logout: () => set({ isAuthenticated: false }),
     }),
     {
-      name: "auth-storage", // key for localStorage
+      name: "auth-storage",
     }
   )
 );

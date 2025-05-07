@@ -1,5 +1,16 @@
 @use 'styles/abstracts';
 
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  background-Color: "#f1ref8e9",
+}
+
+button {
+  cursor: pointer;
+}
 .blue-div {
   background-color: abstracts.$darkblue;
 }
