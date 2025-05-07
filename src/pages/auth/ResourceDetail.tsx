@@ -1,15 +1,23 @@
-
 // src/pages/ResourceDetail.tsx
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { fetchCharacterById } from "../../api/rickAndMorty";
 import { Character } from "../../types/rickAndMorty";
-import { Card, Image, Text, Container, Loader, Button } from "@mantine/core";
-import { useNavigate } from "react-router-dom";
+import {
+  Card,
+  Image,
+  Text,
+  Container,
+  Loader,
+  Button,
+  Flex,
+  Box,
+  Title,
+} from "@mantine/core";
 
 const ResourceDetail = () => {
   const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const { data, isLoading, error } = useQuery<Character>({
     queryKey: ["character", id],
@@ -21,23 +29,65 @@ const ResourceDetail = () => {
   if (error || !data) return <Text color="red">Error fetching character</Text>;
 
   return (
-    <>
-    <Container size="sm" mt="xl">
-      <Card shadow="sm" padding="lg" radius="md" withBorder>
-        <Card.Section>
-          <Image src={data.image} alt={data.name} height={300} />
-        </Card.Section>
-        <Text weight={700} size="lg" mt="md">{data.name}</Text>
-        <Text>Species: {data.species}</Text>
-        <Text>Status: {data.status}</Text>
-        <Text>Gender: {data.gender}</Text>
-        <Text>Origin: {data.origin.name}</Text>
-        <Text>Location: {data.location.name}</Text>
-      </Card>
-    <Button onClick={()=> navigate("/resource")}>Go to List</Button>
-    </Container>
-    </>
+    <div
+      style={{
+        marginTop:"2rem",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Container size="lg">
+        <Card
+          shadow="xl"
+          padding="xl"
+          radius="lg"
+          withBorder
+          style={{ maxWidth: "1000px", margin: "0 auto" }}
+        >
+          <Flex
+            direction={{ base: "column", sm: "row" }}
+            gap="xl"
+            align="center"
+            justify="center"
+          >
+            {/* Image Section */}
+            <Box style={{ flex: 1, textAlign: "center" }}>
+              <Image
+                src={data.image}
+                alt={data.name}
+                height={400}
+                radius="md"
+                style={{ objectFit: "cover", width: "100%" }}
+              />
+            </Box>
 
+            {/* Details Section */}
+            <Box style={{ flex: 1 }}>
+              <Title order={2} mb="md" style={{ color: "#2c3e50" }}>
+                {data.name}
+              </Title>
+              <Text size="lg" mb="xs">🧬 Species: <strong>{data.species}</strong></Text>
+              <Text size="lg" mb="xs">💀 Status: <strong>{data.status}</strong></Text>
+              <Text size="lg" mb="xs">🚻 Gender: <strong>{data.gender}</strong></Text>
+              <Text size="lg" mb="xs">🌍 Origin: <strong>{data.origin.name}</strong></Text>
+              <Text size="lg" mb="xs">📍 Location: <strong>{data.location.name}</strong></Text>
+
+              
+            </Box>
+          </Flex>
+        </Card>
+        <Button
+                fullWidth
+                mt="lg"
+                size="md"
+                color="green"
+                onClick={() => navigate("/resource")}
+              >
+                Go to Resource List
+              </Button>
+      </Container>
+    </div>
   );
 };
 
