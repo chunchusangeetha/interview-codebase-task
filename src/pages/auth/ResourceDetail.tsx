@@ -10,10 +10,11 @@ import {
   Container,
   Loader,
   Button,
-  Flex,
   Box,
   Title,
+  Group,
 } from "@mantine/core";
+import "./auth.css";
 
 const ResourceDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -25,69 +26,55 @@ const ResourceDetail = () => {
     enabled: !!id,
   });
 
-  if (isLoading) return <Loader size="lg" />;
+  const handleLogout = () => {
+    navigate("/signup");
+  };
+
+  if (isLoading) return <Loader size="lg" className="auth-loader" />;
   if (error || !data) return <Text color="red">Error fetching character</Text>;
 
   return (
-    <div
-      style={{
-        marginTop:"2rem",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Container size="lg">
-        <Card
-          shadow="xl"
-          padding="xl"
-          radius="lg"
-          withBorder
-          style={{ maxWidth: "1000px", margin: "0 auto" }}
-        >
-          <Flex
-            direction={{ base: "column", sm: "row" }}
-            gap="xl"
-            align="center"
-            justify="center"
-          >
-            {/* Image Section */}
-            <Box style={{ flex: 1, textAlign: "center" }}>
-              <Image
-                src={data.image}
-                alt={data.name}
-                height={400}
-                radius="md"
-                style={{ objectFit: "cover", width: "100%" }}
-              />
-            </Box>
+    <Container size="lg" className="resource-detail-container">
+      {/* Header with Title and Logout Button */}
+      <Group justify="space-between" className="resource-detail-header">
+        <Title order={2} className="resource-detail-title">
+          Character Details
+        </Title>
+        <Button color="red" onClick={handleLogout} className="logout-button">
+          Logout
+        </Button>
+      </Group>
 
-            {/* Details Section */}
-            <Box style={{ flex: 1 }}>
-              <Title order={2} mb="md" style={{ color: "#2c3e50" }}>
-                {data.name}
-              </Title>
-              <Text size="lg" mb="xs">🧬 Species: <strong>{data.species}</strong></Text>
-              <Text size="lg" mb="xs">💀 Status: <strong>{data.status}</strong></Text>
-              <Text size="lg" mb="xs">🚻 Gender: <strong>{data.gender}</strong></Text>
-              <Text size="lg" mb="xs">🌍 Origin: <strong>{data.origin.name}</strong></Text>
-              <Text size="lg" mb="xs">📍 Location: <strong>{data.location.name}</strong></Text>
+      {/* Card with Image and Details */}
+      <Card shadow="xl" padding="xl" radius="lg" withBorder className="resource-detail-card">
+        <Box className="resource-detail-image">
+          <Image
+            src={data.image}
+            alt={data.name}
+            style={{ objectFit: "cover" }}
+          />
+        </Box>
+        <Box className="resource-detail-info">
+          <Title order={3} className="resource-detail-name">
+            {data.name}
+          </Title>
+          <Text size="lg">🧬 Species: <strong>{data.species}</strong></Text>
+          <Text size="lg">💀 Status: <strong>{data.status}</strong></Text>
+          <Text size="lg">🚻 Gender: <strong>{data.gender}</strong></Text>
+          <Text size="lg">🌍 Origin: <strong>{data.origin.name}</strong></Text>
+          <Text size="lg">📍 Location: <strong>{data.location.name}</strong></Text>
+        </Box>
+      </Card>
 
-              
-            </Box>
-          </Flex>
-        </Card>
-        <Button
-                fullWidth
-                mt="lg"
-                size="md"
-                color="green"
-                onClick={() => navigate("/resource")}
-              >
-                Go to Resource List
-              </Button>
-      </Container>
-    </div>
+      {/* Back to Resource List Button */}
+      <Button
+        
+        onClick={() => navigate("/resource")}
+        className="back-button"
+      >
+        Back to Resource List
+      </Button>
+    </Container>
   );
 };
 

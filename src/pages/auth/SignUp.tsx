@@ -1,4 +1,3 @@
-// src/pages/SignUp.tsx
 import { useState } from "react";
 import {
   TextInput,
@@ -9,10 +8,9 @@ import {
   Container,
   Stack,
   Text,
-  Center,
 } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
-import { showNotification } from "@mantine/notifications";
+import "./auth.css"; // Import shared CSS for consistent styling
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
@@ -23,12 +21,12 @@ export default function SignUp() {
 
   const handleSignup = () => {
     if (!isValidEmail(email)) {
-      showNotification({ title: "Invalid Email", message: "Enter a valid email address.", color: "red" });
+      alert("Invalid Email: Enter a valid email address.");
       return;
     }
 
     if (password.length < 4) {
-      showNotification({ title: "Weak Password", message: "Password must be at least 4 characters.", color: "red" });
+      alert("Weak Password: Password must be at least 4 characters.");
       return;
     }
 
@@ -36,82 +34,65 @@ export default function SignUp() {
     const existing = users.find((u: any) => u.email === email);
 
     if (existing) {
-      showNotification({
-        title: "User Exists",
-        message: "Account already exists. Redirecting to login...",
-        color: "orange",
-      });
+      alert("User Exists: Account already exists. Redirecting to login...");
       setTimeout(() => navigate("/signin"), 1500);
       return;
     }
 
     users.push({ email, password });
     localStorage.setItem("users", JSON.stringify(users));
-
-    showNotification({
-      title: "Success",
-      message: "Registration successful. Redirecting to login...",
-      color: "green",
-    });
-    navigate("/signin");
+    navigate("/resource");
   };
 
   return (
-    <div style={{ marginTop:"2rem", display: "flex", justifyContent: "center", alignItems: "center", overflow: "hidden" }}>
-      <Container size="xs">
-        <Card shadow="md" padding="xl" radius="lg" withBorder style={{width: 300}}>
-          <Title order={2} align="center" mb="md" style={{ color: "#2c3e50" }}>
+    <div className="auth-container">
+      <Container size="xs" className="auth-card-container">
+        <Card shadow="lg" padding="xl" radius="lg" withBorder className="auth-card">
+          <Title order={2} mb="md" className="auth-title">
             Create an Account
           </Title>
-          <form onSubmit={handleSignup}>
-
-          <Stack spacing="md">
-            <TextInput
-              label="Email"
-              placeholder="Enter your email"
-              value={email}
-              type="email"
-              onChange={(e) => setEmail(e.currentTarget.value)}
-              required
-              styles={{
-                input: {
-                marginBottom: "15px",
-                padding: "10px",
-                borderRadius: "5px",
-                border: "1px solid black",
-                backgroundColor: "white",
-                },
-              }}
-            />
-            <PasswordInput
-              label="Password"
-              placeholder="Create a password"
-              value={password}
-              onChange={(e) => setPassword(e.currentTarget.value)}
-              required
-              styles={{
-                input: {
-                marginBottom: "15px",
-                padding: "10px",
-                borderRadius: "5px",
-                border: "1px solid black",
-                backgroundColor: "white",
-                },
-              }}
-            />
-            <Center>
-              <Button style={{ backgroundColor: "#2ecc71", width: "150px" }}>
+          <form onSubmit={(e) => e.preventDefault()}>
+            <Stack gap="sm">
+              <TextInput
+                label="Email"
+                placeholder="Enter your email"
+                value={email}
+                type="email"
+                onChange={(e) => setEmail(e.currentTarget.value)}
+                required
+                className="auth-input"
+              />
+              <PasswordInput
+                label="Password"
+                placeholder="Create a password"
+                value={password}
+                onChange={(e) => setPassword(e.currentTarget.value)}
+                required
+                className="auth-input"
+              />
+              <Button
+                onClick={handleSignup}
+                type="button"
+                fullWidth
+                className="auth-submit-button"
+              >
                 Register
               </Button>
-            </Center>
-            <Text align="center" size="sm">Already have an account?</Text>
-            <Center>
-              <Button variant="outline" color="blue" onClick={() => navigate("/signin")} style={{ width: "150px" }}>
-                Login
-              </Button>
-            </Center>
-          </Stack>
+            </Stack>
           </form>
+          <div className="auth-footer">
+            <Text size="sm" className="auth-footer-text">
+              Already have an account?
+            </Text>
+            <Button
+              variant="outline"
+              color="blue"
+              onClick={() => navigate("/signin")}
+              className="auth-secondary-button"
+            >
+              Log in
+            </Button>
+          </div>
         </Card>
       </Container>
     </div>
