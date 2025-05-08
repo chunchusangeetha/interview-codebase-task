@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   TextInput,
   PasswordInput,
@@ -9,13 +10,14 @@ import {
   Stack,
   Text,
 } from "@mantine/core";
-import { useNavigate } from "react-router-dom";
-import "./auth.css"; // Custom CSS if needed
+import { useStore } from "../../store/app.store";
+import "./auth.css";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const login = useStore((state) => state.login);
   const navigate = useNavigate();
 
   const isValidEmail = (email: string) => /\S+@\S+\.\S+/.test(email);
@@ -30,20 +32,17 @@ export default function SignUp() {
     e.preventDefault();
     setErrorMessage("");
 
-    const trimmedEmail = email.trim();
-    const trimmedPassword = password.trim();
-
-    if (!trimmedEmail || !trimmedPassword) {
+    if (!email || !password) {
       setErrorMessage("All fields are required.");
       return;
     }
 
-    if (!isValidEmail(trimmedEmail)) {
-      setErrorMessage("Invalid Email: Enter a valid email address.");
+    if (!isValidEmail(email)) {
+      setErrorMessage("Enter a valid email address.");
       return;
     }
 
-    if (!isValidPassword(trimmedPassword)) {
+    if (!isValidPassword(password)) {
       setErrorMessage(
         "Password must be at least 8 characters with uppercase, lowercase, number, and special character."
       );
@@ -51,16 +50,17 @@ export default function SignUp() {
     }
 
     const users = JSON.parse(localStorage.getItem("users") || "[]");
-    const existing = users.find((u: any) => u.email === trimmedEmail);
+    const existing = users.find((u: any) => u.email === email);
 
     if (existing) {
-      setErrorMessage("User already exists. Redirecting to login...");
+      setErrorMessage("Account already exists. Please log in.");
       setTimeout(() => navigate("/signin"), 1500);
       return;
     }
 
-    users.push({ email: trimmedEmail, password: trimmedPassword });
+    users.push({ email, password });
     localStorage.setItem("users", JSON.stringify(users));
+    login(); 
     navigate("/resource");
   };
 
@@ -91,26 +91,28 @@ export default function SignUp() {
                 className="auth-input"
               />
               {errorMessage && (
-                <Text size="sm" mt="xs" className="auth-error-text" color="red">
+                <Text size="sm" color="red" className="auth-error-text">
                   {errorMessage}
                 </Text>
               )}
-              <Button type="submit" fullWidth className="auth-submit-button">
+              <Button
+                type="submit"
+                fullWidth
+                className="auth-submit-button"
+              >
                 Register
               </Button>
             </Stack>
           </form>
-          <div className="auth-footer" style={{ marginTop: "1rem", textAlign: "center" }}>
-            <Text size="sm">Already have an account?</Text>
+          <div className="auth-footer">
+            <Text size="sm" className="auth-footer-text">
+              Already have an account?
+            </Text>
             <Button
-              variant="outline"
-              color="blue"
-              mt="sm"
-              fullWidth
               onClick={() => navigate("/signin")}
               className="auth-secondary-button"
             >
-              Log in
+              Login
             </Button>
           </div>
         </Card>
