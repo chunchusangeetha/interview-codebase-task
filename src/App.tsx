@@ -18,10 +18,10 @@ const App = () => {
         }}
       >
         <Title order={1} style={{ fontWeight: "bold", fontSize: "2.5rem" }}>
-          Script Assist - React Developer Technical Exercise
+        Discover the World of Rick and Morty
         </Title>
-        <Text style={{ fontSize: "1rem", marginTop: "0.5rem" }}>
-          Rick and Morty API Explorer
+        <Text style={{ fontSize: "2rem", marginTop: "0.5rem" }}>
+        Explore characters, locations, and episodes from the multiverse
         </Text>
       </header>
 

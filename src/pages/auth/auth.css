@@ -1,0 +1,315 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-Color: "grey",
+}
+/* Full-page container */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, rgb(228, 222, 222), #d9e0e7); /* Background gradient */
+  padding: 0; /* Remove extra padding */
+  margin: 0; /* Remove extra margin */
+  overflow: hidden; /* Prevent scrolling */
+  box-sizing: border-box;
+}
+
+/* Card container */
+.auth-card-container {
+  max-width: 400px;
+  width: 100%;
+  padding: 1rem; /* Add padding for smaller screens */
+  margin: 5px; /* Center the card */
+}
+
+/* Card styling */
+.auth-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+}
+
+/* Title styling */
+.auth-title {
+  color: #2c3e50;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+/* Input fields */
+.auth-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 2rem; /* Space between label and input */
+}
+
+.auth-input input {
+  border: 1px solid #dfe6e9;
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-size: 1rem;
+  width: 300px;
+}
+
+.auth-input input:focus {
+  border-color: #74b9ff;
+  box-shadow: 0 0 5px rgba(116, 185, 255, 0.5);
+}
+
+/* Stack spacing */
+form .mantine-Stack-root {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center buttons horizontally */
+  gap: 1rem; /* Space between input fields and buttons */
+}
+
+/* Submit button */
+.auth-submit-button {
+  background-color: #2ca9c9;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 0.75rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  border: none;
+  text-align: center;
+  width: 200px; /* Make the button full width */
+}
+
+.auth-submit-button:hover {
+  background-color: #0e8de2;
+}
+
+/* Secondary button */
+.auth-secondary-button {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  border:none;
+  color: #2ca9c9;
+  line-height: 1; /* Ensure consistent vertical alignment */
+}
+
+/* Center text */
+.auth-card-container .mantine-Text-root {
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+/* Footer section for text and button alignment */
+.auth-footer {
+  display: flex;
+  justify-content: center;
+  gap: 0.3rem; /* Space between text and button */
+  margin-top: 1rem; /* Add some spacing from the previous element */
+}
+
+.auth-footer-text {
+  font-size: 0.9rem;
+  color: #2c3e50;
+  line-height: 1; /* Ensure consistent vertical alignment */
+  margin: 0; /* Remove any default margin */
+}
+
+/* Center the loader and error messages */
+.loader {
+  margin: 2rem auto;
+  display: block;
+}
+
+.error-text {
+  text-align: center;
+  margin-top: 2rem;
+  color: red;
+}
+
+/* Table link styling */
+.table-link {
+  text-decoration: none;
+  color: #1e90ff;
+}
+
+.table-link:hover {
+  text-decoration: underline;
+}
+
+/* Error text */
+.auth-error-text {
+  text-align: center;
+  margin-top: 2rem;
+  color: red;
+  font-size: 1.2rem;
+}
+
+/* Loader */
+.auth-loader {
+  margin: 2rem auto;
+  display: block;
+}
+
+/* Resource container */
+.resource-container {
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Resource header */
+.resource-header {
+  display: flex;
+  justify-content: space-around; /* Space between the logout button and title */
+  align-items: center; /* Vertically align items */
+  padding: 0 1rem; /* Add some padding for spacing */
+
+}
+
+/* Resource title */
+.resource-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2c3e50;
+  text-align: center; /* Center the title text */
+  flex-grow: 1; /* Allow the title to take up available space */
+}
+
+
+.logout-button {
+  background-color: #6caad3;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  margin: 0; /* Remove unnecessary margins */
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #c0392b;
+}
+
+/* Resource table */
+.resource-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.resource-table th,
+.resource-table td {
+  text-align: left;
+  padding: 0.75rem;
+}
+
+.resource-table th {
+  background-color: #619dd6;
+  color: white;
+}
+
+.resource-table tr:nth-child(even) {
+  background-color: #ece6e6;
+}
+
+/* Resource link */
+.resource-link {
+  text-decoration: none;
+  color: #3498db;
+  font-weight: bold;
+}
+
+.resource-link:hover {
+  text-decoration: underline;
+  color: #2980b9;
+}
+
+/* Resource Detail Container */
+.resource-detail-container {
+  padding: 1rem;
+  background-color: #f4f6f8; /* Light background color for the container */
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Resource Detail Header */
+.resource-detail-header {
+  display: flex;
+  justify-content: space-between; /* Space between title and logout button */
+  align-items: center; /* Vertically align items */
+  margin-bottom: 1rem; /* Add spacing below the header */
+}
+
+/* Resource Detail Title */
+.resource-detail-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2c3e50;
+  text-align: center; /* Center the title text */
+  flex-grow: 1;
+}
+
+/* Resource Detail Card */
+.resource-detail-card {
+  margin: 0 auto;
+  padding: 1rem ;
+  display: flex;
+  flex-direction: row; /* Ensure image and details are side by side */
+  gap: 2rem; /* Add space between the image and details */
+  background-color: #ffffff; /* White background for the card */
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  align-items: center;
+}
+
+/* Resource Detail Image */
+.resource-detail-image {
+  flex: 1;
+  text-align: center;
+}
+
+.resource-detail-image img {
+  border-radius: 8px;
+  max-width: 100%; /* Ensure the image fits within its container */
+  height: auto;
+  object-fit: cover;
+}
+
+/* Resource Detail Info */
+.resource-detail-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Add spacing between details */
+}
+
+/* Resource Detail Name */
+.resource-detail-name {
+  color: #2c3e50;
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+/* Back Button */
+.back-button {
+  background-color: #6caad3;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 1rem; /* Explicitly add spacing above the button */
+  margin-left: auto;
+  margin-right: auto;/* Add margin to center the button and create spacing */
+  display: block; /* Make the button a block element to center it */
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #4596cc;
+}
