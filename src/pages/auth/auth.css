@@ -4,27 +4,24 @@ body {
   font-family: 'Segoe UI', sans-serif;
   background-Color: "grey",
 }
-/* Full-page container */
 .auth-container {
   display: flex;
   justify-content: center;
   align-items: center;
   background: linear-gradient(135deg, rgb(228, 222, 222), #d9e0e7); /* Background gradient */
-  padding: 0; /* Remove extra padding */
-  margin: 0; /* Remove extra margin */
-  overflow: hidden; /* Prevent scrolling */
+  padding: 0; 
+  margin: 0;
+  overflow: hidden; 
   box-sizing: border-box;
 }
 
-/* Card container */
 .auth-card-container {
   max-width: 400px;
   width: 100%;
-  padding: 1rem; /* Add padding for smaller screens */
-  margin: 5px; /* Center the card */
+  padding: 1rem; 
+  margin: 20px; 
 }
 
-/* Card styling */
 .auth-card {
   background-color: #ffffff;
   border-radius: 12px;
@@ -32,7 +29,6 @@ body {
   padding: 2rem;
 }
 
-/* Title styling */
 .auth-title {
   color: #2c3e50;
   text-align: center;
@@ -40,12 +36,11 @@ body {
   margin-bottom: 1.5rem;
 }
 
-/* Input fields */
 .auth-input {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  margin-top: 2rem; /* Space between label and input */
+  margin-top: 1rem; 
 }
 
 .auth-input input {
@@ -61,12 +56,11 @@ body {
   box-shadow: 0 0 5px rgba(116, 185, 255, 0.5);
 }
 
-/* Stack spacing */
 form .mantine-Stack-root {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center buttons horizontally */
-  gap: 1rem; /* Space between input fields and buttons */
+  align-items: center; 
+  gap: 1rem; 
 }
 
 /* Submit button */
@@ -80,45 +74,42 @@ form .mantine-Stack-root {
   transition: background-color 0.3s ease;
   border: none;
   text-align: center;
-  width: 200px; /* Make the button full width */
+  width: 200px; 
 }
 
 .auth-submit-button:hover {
   background-color: #0e8de2;
 }
 
-/* Secondary button */
+
 .auth-secondary-button {
   padding: 0.5rem 1rem;
   font-size: 0.9rem;
   font-weight: bold;
   border:none;
   color: #2ca9c9;
-  line-height: 1; /* Ensure consistent vertical alignment */
+  line-height: 1; 
 }
 
-/* Center text */
 .auth-card-container .mantine-Text-root {
   text-align: center;
   margin-top: 0.5rem;
 }
 
-/* Footer section for text and button alignment */
 .auth-footer {
   display: flex;
   justify-content: center;
-  gap: 0.3rem; /* Space between text and button */
-  margin-top: 1rem; /* Add some spacing from the previous element */
+  gap: 0.3rem; 
+  margin-top: 1rem; 
 }
 
 .auth-footer-text {
   font-size: 0.9rem;
   color: #2c3e50;
-  line-height: 1; /* Ensure consistent vertical alignment */
-  margin: 0; /* Remove any default margin */
+  line-height: 1; 
+  margin: 0; 
 }
 
-/* Center the loader and error messages */
 .loader {
   margin: 2rem auto;
   display: block;
@@ -130,7 +121,6 @@ form .mantine-Stack-root {
   color: red;
 }
 
-/* Table link styling */
 .table-link {
   text-decoration: none;
   color: #1e90ff;
@@ -140,21 +130,18 @@ form .mantine-Stack-root {
   text-decoration: underline;
 }
 
-/* Error text */
 .auth-error-text {
   text-align: center;
   margin-top: 2rem;
   color: red;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
-/* Loader */
 .auth-loader {
   margin: 2rem auto;
   display: block;
 }
 
-/* Resource container */
 .resource-container {
   padding: 1rem;
   background-color: #f9f9f9;
@@ -162,22 +149,20 @@ form .mantine-Stack-root {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Resource header */
 .resource-header {
   display: flex;
-  justify-content: space-around; /* Space between the logout button and title */
-  align-items: center; /* Vertically align items */
-  padding: 0 1rem; /* Add some padding for spacing */
+  justify-content: space-around; 
+  align-items: center; 
+  padding: 0 1rem; 
 
 }
 
-/* Resource title */
 .resource-title {
   font-size: 2rem;
   font-weight: bold;
   color: #2c3e50;
-  text-align: center; /* Center the title text */
-  flex-grow: 1; /* Allow the title to take up available space */
+  text-align: center; 
+  flex-grow: 1;
 }
 
 
@@ -187,7 +172,7 @@ form .mantine-Stack-root {
   font-weight: bold;
   border: none;
   padding: 10px 20px;
-  margin: 0; /* Remove unnecessary margins */
+  margin: 0;
   transition: background-color 0.3s ease;
 }
 
@@ -195,7 +180,7 @@ form .mantine-Stack-root {
   background-color: #c0392b;
 }
 
-/* Resource table */
+
 .resource-table {
   width: 100%;
   border-collapse: collapse;
@@ -217,7 +202,6 @@ form .mantine-Stack-root {
   background-color: #ece6e6;
 }
 
-/* Resource link */
 .resource-link {
   text-decoration: none;
   color: #3498db;
@@ -229,28 +213,25 @@ form .mantine-Stack-root {
   color: #2980b9;
 }
 
-/* Resource Detail Container */
 .resource-detail-container {
   padding: 1rem;
-  background-color: #f4f6f8; /* Light background color for the container */
+  background-color: #f4f6f8;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Resource Detail Header */
 .resource-detail-header {
   display: flex;
-  justify-content: space-between; /* Space between title and logout button */
-  align-items: center; /* Vertically align items */
-  margin-bottom: 1rem; /* Add spacing below the header */
+  justify-content: space-between; 
+  align-items: center; 
+  margin-bottom: 1rem; 
 }
 
-/* Resource Detail Title */
 .resource-detail-title {
   font-size: 2rem;
   font-weight: bold;
   color: #2c3e50;
-  text-align: center; /* Center the title text */
+  text-align: center;
   flex-grow: 1;
 }
 
@@ -259,15 +240,14 @@ form .mantine-Stack-root {
   margin: 0 auto;
   padding: 1rem ;
   display: flex;
-  flex-direction: row; /* Ensure image and details are side by side */
-  gap: 2rem; /* Add space between the image and details */
-  background-color: #ffffff; /* White background for the card */
+  flex-direction: row; 
+  gap: 2rem; 
+  background-color: #ffffff; 
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   align-items: center;
 }
 
-/* Resource Detail Image */
 .resource-detail-image {
   flex: 1;
   text-align: center;
@@ -275,20 +255,18 @@ form .mantine-Stack-root {
 
 .resource-detail-image img {
   border-radius: 8px;
-  max-width: 100%; /* Ensure the image fits within its container */
+  max-width: 100%; 
   height: auto;
   object-fit: cover;
 }
 
-/* Resource Detail Info */
 .resource-detail-info {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 1rem; /* Add spacing between details */
+  gap: 1rem; 
 }
 
-/* Resource Detail Name */
 .resource-detail-name {
   color: #2c3e50;
   font-size: 1.8rem;
@@ -296,17 +274,16 @@ form .mantine-Stack-root {
   margin-bottom: 1rem;
 }
 
-/* Back Button */
 .back-button {
   background-color: #6caad3;
   color: white;
   font-weight: bold;
   border: none;
   padding: 10px 20px;
-  margin-top: 1rem; /* Explicitly add spacing above the button */
+  margin-top: 1rem; 
   margin-left: auto;
-  margin-right: auto;/* Add margin to center the button and create spacing */
-  display: block; /* Make the button a block element to center it */
+  margin-right: auto;
+  display: block; 
   transition: background-color 0.3s ease;
 }
 

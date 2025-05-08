@@ -35,8 +35,8 @@ const ResourceList = () => {
   return (
     
     <Container size="lg" mt="md" className="resource-container">
-      <Group  justify="space-between"  mb="md" className="resource-header">
-        <Text size="xl" fw={700} className="resource-title" style={{ margin: "0 auto" }}>
+      <Group  className="resource-header">
+        <Text  className="resource-title" >
           Rick and Morty List
         </Text>
         <Button onClick={handleLogout} className="logout-button">

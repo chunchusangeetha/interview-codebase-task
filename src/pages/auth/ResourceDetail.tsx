@@ -35,18 +35,15 @@ const ResourceDetail = () => {
 
   return (
     <Container size="lg" className="resource-detail-container">
-      {/* Header with Title and Logout Button */}
-      <Group justify="space-between" className="resource-detail-header">
+      <Group className="resource-detail-header">
         <Title order={2} className="resource-detail-title">
           Character Details
         </Title>
-        <Button color="red" onClick={handleLogout} className="logout-button">
+        <Button onClick={handleLogout} className="logout-button">
           Logout
         </Button>
       </Group>
-
-      {/* Card with Image and Details */}
-      <Card shadow="xl" padding="xl" radius="lg" withBorder className="resource-detail-card">
+      <Card shadow="xl" className="resource-detail-card">
         <Box className="resource-detail-image">
           <Image
             src={data.image}
@@ -65,10 +62,7 @@ const ResourceDetail = () => {
           <Text size="lg">📍 Location: <strong>{data.location.name}</strong></Text>
         </Box>
       </Card>
-
-      {/* Back to Resource List Button */}
       <Button
-        
         onClick={() => navigate("/resource")}
         className="back-button"
       >

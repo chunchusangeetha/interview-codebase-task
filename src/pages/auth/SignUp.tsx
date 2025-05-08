@@ -10,36 +10,56 @@ import {
   Text,
 } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
-import "./auth.css"; // Import shared CSS for consistent styling
+import "./auth.css"; // Custom CSS if needed
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   const isValidEmail = (email: string) => /\S+@\S+\.\S+/.test(email);
 
-  const handleSignup = () => {
-    if (!isValidEmail(email)) {
-      alert("Invalid Email: Enter a valid email address.");
+  const isValidPassword = (password: string) => {
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return passwordRegex.test(password);
+  };
+
+  const handleSignup = (e: React.FormEvent) => {
+    e.preventDefault();
+    setErrorMessage("");
+
+    const trimmedEmail = email.trim();
+    const trimmedPassword = password.trim();
+
+    if (!trimmedEmail || !trimmedPassword) {
+      setErrorMessage("All fields are required.");
       return;
     }
 
-    if (password.length < 4) {
-      alert("Weak Password: Password must be at least 4 characters.");
+    if (!isValidEmail(trimmedEmail)) {
+      setErrorMessage("Invalid Email: Enter a valid email address.");
+      return;
+    }
+
+    if (!isValidPassword(trimmedPassword)) {
+      setErrorMessage(
+        "Password must be at least 8 characters with uppercase, lowercase, number, and special character."
+      );
       return;
     }
 
     const users = JSON.parse(localStorage.getItem("users") || "[]");
-    const existing = users.find((u: any) => u.email === email);
+    const existing = users.find((u: any) => u.email === trimmedEmail);
 
     if (existing) {
-      alert("User Exists: Account already exists. Redirecting to login...");
+      setErrorMessage("User already exists. Redirecting to login...");
       setTimeout(() => navigate("/signin"), 1500);
       return;
     }
 
-    users.push({ email, password });
+    users.push({ email: trimmedEmail, password: trimmedPassword });
     localStorage.setItem("users", JSON.stringify(users));
     navigate("/resource");
   };
@@ -47,11 +67,11 @@ export default function SignUp() {
   return (
     <div className="auth-container">
       <Container size="xs" className="auth-card-container">
-        <Card shadow="lg" padding="xl" radius="lg" withBorder className="auth-card">
+        <Card shadow="lg" className="auth-card">
           <Title order={2} mb="md" className="auth-title">
             Create an Account
           </Title>
-          <form onSubmit={(e) => e.preventDefault()}>
+          <form onSubmit={handleSignup}>
             <Stack gap="sm">
               <TextInput
                 label="Email"
@@ -70,23 +90,23 @@ export default function SignUp() {
                 required
                 className="auth-input"
               />
-              <Button
-                onClick={handleSignup}
-                type="button"
-                fullWidth
-                className="auth-submit-button"
-              >
+              {errorMessage && (
+                <Text size="sm" mt="xs" className="auth-error-text" color="red">
+                  {errorMessage}
+                </Text>
+              )}
+              <Button type="submit" fullWidth className="auth-submit-button">
                 Register
               </Button>
             </Stack>
           </form>
-          <div className="auth-footer">
-            <Text size="sm" className="auth-footer-text">
-              Already have an account?
-            </Text>
+          <div className="auth-footer" style={{ marginTop: "1rem", textAlign: "center" }}>
+            <Text size="sm">Already have an account?</Text>
             <Button
               variant="outline"
               color="blue"
+              mt="sm"
+              fullWidth
               onClick={() => navigate("/signin")}
               className="auth-secondary-button"
             >
